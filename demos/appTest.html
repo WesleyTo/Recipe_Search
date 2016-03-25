@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="utf-8"></meta>
+	<title>Recipe Search</title>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="appTest.js"></script>
+	<link href="appTest.css" rel="stylesheet">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div id="wrapper">
+		<header class="center">
+			<a href=""><h1>Recipe Search</h1></a>
+			<p>
+				<input placeholder="Ingredients" class="input-text center" id="ingredients"></input>
+				<button id="search_btn">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</p>
+		</header>
+		<div id="overlay">
+			<span class="glyphicon glyphicon-leaf"></span>
+		</div>
+		<div id="contents" class="center">
+		</div>
+		<div id="indicators" class="center">
+			<p id='busy'></p>
+			<button class='center btn btn-block glyphicon glyphicon-menu-down' id='load_more'></button>
+			</div>
+		<footer>
+			<h5>Powered by <a href="http://www.food2fork.com" target="_blank">Food2Fork</a></h5>
+		</footer>
+	</div>
+</body>
+</html>
