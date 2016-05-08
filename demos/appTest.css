@@ -30,6 +30,8 @@ body {
 	-webkit-transition: background 1s linear 10s;
 	-0-transition: background 1s linear 10s;
 	transition: background 1s linear 10s;
+	background-image: url('http://www.commonground.coop/sites/default/files/vegetables%20wooden%20background-croppedx2.jpg');
+	background-size: cover;
 }
 #wrapper {
 	min-height:100%;
