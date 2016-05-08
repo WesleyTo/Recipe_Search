@@ -65,6 +65,13 @@ function makeRequest(page, query){
 							$($("#contents .box").get(nextItemIndex)).scrollView();
 							$("#load_more").show().prop("disabled", false);
 						}
+						
+						else if (element.count <= 0) {
+						  
+						        alert("No results found.");
+						    
+						}
+						
 						if (element.count != 30) {
 							$("#load_more").slideUp();
 							return false;
