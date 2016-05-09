@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('pageinit', function() {
 	// 'enter' in textbox executes search
 	$('#ingredients').keypress(function(e){
 		if(e.keyCode==13)
@@ -6,28 +6,32 @@ $(document).ready(function(){
 	});
 	// handles initial searches
 	$("#search_btn").click(function(){
-		$("#load_more").data("page", 0).hide();
-		$("#contents div").remove();
-		$(this).prop("disabled", true);
+		$("#load_more").data("page", 0);
+		$("#indicators").hide();
+		$("#contents").empty();
+		$(this).button("disable");
 		doSearch();
 	});
 	// handles continuing searches
 	$("#load_more").click(function(e){
-		$(this).prop("disabled", true);
+		$(this).button("disable");
 		doSearch();
 	});
 	// sets up initial pagination params
-	$("#load_more").data("page", 0).hide();
+	$("#load_more").data("page", 0);
+	// hides the load more button if there are no results displayed
+	if ($("#contents li").size() == 0){
+		$("#indicators").hide();
+	}
 });
 
 // performs a search, new or continuing
 function doSearch(){
 	// initial setup
-	$(this).prop("disabled",true);
 	var _contents = $("#contents");
 	var load_more_button = $("#load_more");
 	var currPage = load_more_button.data("page");
-	$("#busy").hide().html("<span class='glyphicon glyphicon-repeat spinner' style='font-size: 3em;'></span>").slideDown();
+	$("#busy").hide().html("<span class='spinner'>Loading...</span>").slideDown();
 	// build request URL
 	var _root = "http://food2fork.com/api/search";
 	var _key = "5277c1f10edffc95b8f09146f773b56c";
@@ -55,41 +59,45 @@ function makeRequest(page, query){
 				$.each(json, function(i, element){ // process each recipe
 					if (element){
 						if (element.count == 1){
-							processRecipe(page, element.recipes, 0);
+							processRecipe(page, element.recipes);
 						}
 						else if(element.count > 0){
-							var nextItemIndex = $("#contents .box").size();
+							var nextItemIndex = $("#contents li").size();
 							$.each(element.recipes, function(i, recipe){
-								processRecipe(page, recipe, i);
+								processRecipe(page, recipe);
 							});
-							$($("#contents .box").get(nextItemIndex)).scrollView();
-							$("#load_more").show().prop("disabled", false);
+							$($("#contents li").get(nextItemIndex)).scrollView();
+							
+							$("#indicators").show();
+							$("#load_more").show().button("enable");
+						}
+						else if(element.count <= 0){
+							$("#contents").append($("<li class='center'><h2>NO RESULTS FOUND</h2><h5>Try modifying your search terms</h5><li>"));
 						}
 						if (element.count != 30) {
-							$("#load_more").slideUp();
+							$("#indicators").slideUp();
 							return false;
 						}
 					}
 				});	
-				$("#search_btn").prop("disabled", false);
+				$("#search_btn").button("enable");
 				$("#busy").slideUp();
 			}
 		}
 	).error(function(){
-		$("#busy").slideUp().empty();
-		$("#load_more").slideUp();
+		$("#indicators").slideUp();
 	});
 }
 
 // parse recipe and add to the page
-function processRecipe(page, recipe, delayMult){
-	var newBox = $("<div class='box'><a target='_blank' href='" +
+function processRecipe(page, recipe){
+	var newRecipe = $("<li><a target='_blank' href='" +
 		recipe.f2f_url + "'><img alt='" +
-		recipe.title + "' class='thumb' src='" +
-		recipe.image_url + "'>" + "<div class='text-box'><p class='text-box-text'>" +
-		recipe.title + "</p></div></a></div>");
-	page.append(newBox);
-	newBox.hide().delay(75 * delayMult).fadeIn(750).css("display","inline-block");
+		recipe.title + "' src='" +
+		recipe.image_url + "' /><h3>" +
+		recipe.title + "</h3><p> Publisher: " +
+		recipe.publisher + "</p></a></li>");
+	page.append(newRecipe).listview('refresh');
 }
 
 // auto scroll-to function
