@@ -6,7 +6,7 @@ $(document).on('pageinit', function() {
 	});
 	// handles initial searches
 	$("#search_btn").click(function(){
-		$("#load_more").data("page", 0);
+		$("#load_more").data("result-page", 0);
 		$("#indicators").hide();
 		$("#contents").empty();
 		$(this).button("disable");
@@ -18,7 +18,7 @@ $(document).on('pageinit', function() {
 		doSearch();
 	});
 	// sets up initial pagination params
-	$("#load_more").data("page", 0);
+	$("#load_more").data("result-page", 0);
 	// hides the load more button if there are no results displayed
 	if ($("#contents li").size() == 0){
 		$("#indicators").hide();
@@ -30,7 +30,7 @@ function doSearch(){
 	// initial setup
 	var _contents = $("#contents");
 	var load_more_button = $("#load_more");
-	var currPage = load_more_button.data("page");
+	var currPage = load_more_button.data("result-page");
 	$("#busy").hide().html("<span class='spinner'>Loading...</span>").slideDown();
 	// build request URL
 	var _root = "http://food2fork.com/api/search";
@@ -40,7 +40,7 @@ function doSearch(){
 	var _url = _root + "?key=" + _key + "&q=" + _ingredients + "&page=" + _page;
 	var query = "select * from json where url=\"" + _url + "\""
 	makeRequest(_contents, query); // send and process HTTP request
-	load_more_button.data().page++; // update button
+	load_more_button.data().result-page++; // update button
 }
 
 // handle CORS/JSONP AJAX requests via YQL
