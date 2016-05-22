@@ -9,6 +9,7 @@ $(document).on('pageinit', function() {
 		$("#load_more").data("resultPage", 0);
 		$("#indicators").hide();
 		$("#contents").empty();
+		//$('contents li:not(:last)').remove(); // remove everything except the load_more button
 		$(this).button("disable");
 		doSearch();
 	});
@@ -19,13 +20,14 @@ $(document).on('pageinit', function() {
 	});
 	// sets up initial pagination params
 	$("#load_more").data("resultPage", 0);
+	
 	// hides the load more button if there are no results displayed
 	if ($("#contents li").size() == 0){
 		$("#indicators").hide();
 	}
 });
 
-// performs a search, new or continuing
+/* PERFORMS A SEARCH, NEW OR CONTINUING */
 function doSearch(){
 	// initial setup
 	var _contents = $("#contents");
@@ -43,7 +45,7 @@ function doSearch(){
 	load_more_button.data().resultPage++; // update button
 }
 
-// handle CORS/JSONP AJAX requests via YQL
+/* HANDLE CORS/JSONP AJAX REQUESTS VIA YQL */
 function makeRequest(page, query){
 	$.getJSON(
 		"http://query.yahooapis.com/v1/public/yql",
@@ -53,9 +55,7 @@ function makeRequest(page, query){
 		},
 		function(response, status){
 			if (status){ // process successful request
-				console.log(status);
 				var json = response.query.results;
-				console.log(json);
 				$.each(json, function(i, element){ // process each recipe
 					if (element){
 						if (element.count == 1){
@@ -89,7 +89,7 @@ function makeRequest(page, query){
 	});
 }
 
-// parse recipe and add to the page
+/* PARSE RECIPE AND ADD TO THE PAGE */
 function processRecipe(page, recipe){
 	var newRecipe = $("<li><a target='_blank' href='" +
 		recipe.f2f_url + "'><img alt='" +
@@ -100,7 +100,7 @@ function processRecipe(page, recipe){
 	page.append(newRecipe).listview('refresh');
 }
 
-// auto scroll-to function
+/* AUTO SCROLL-TO FUNCTION */
 $.fn.scrollView = function () {
 	return this.each(function () {
 		$('html, body').animate({

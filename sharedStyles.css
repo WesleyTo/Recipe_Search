@@ -10,6 +10,13 @@
 	min-width: 100px;
 	width: 25%;
 }
+.bio{
+	background: rgba(255, 255, 255, 0.5);
+}
+.bio a{
+	text-decoration: none;
+	font-weight: bold;
+}
 
 /*=====================
 JQuery Mobile Overrides
@@ -20,4 +27,11 @@ JQuery Mobile Overrides
     width: 100%;
     position: absolute;
     top: 0;
+}
+.ui-page.ui-body-c {
+    background:url('vegetables%20wooden%20background-croppedx2.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center center;
+    background-attachment:fixed;  
 }
