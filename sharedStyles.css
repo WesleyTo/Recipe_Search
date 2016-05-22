@@ -64,8 +64,7 @@ h5 {
 
 
 /*=====================
-JQuery Mobile Overrides
-JQM is awful w/ high-res
+JQM Overrides - JQM is awful w/ high-res
 =====================*/
 .ui-li-thumb{
     max-height: 20vmin; 
