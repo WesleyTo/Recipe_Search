@@ -36,12 +36,14 @@ h5 {
 	min-width: 100px;
 	width: 25%;
 }
-.bio{
+.background-25{
+	background: rgba(255, 255, 255, 0.25);
+}
+.background-50{
 	background: rgba(255, 255, 255, 0.5);
 }
-.bio a{
-	text-decoration: none;
-	font-weight: bold;
+.background-75{
+	background: rgba(255, 255, 255, 0.75);
 }
 #logo {
 	z-index: 0;
@@ -63,10 +65,8 @@ h5 {
 
 /*=====================
 JQuery Mobile Overrides
+JQM is awful w/ high-res
 =====================*/
-.ul-li > .ui-btn-inner {
-	height: 20vmin;
-}
 .ui-li-thumb{
     max-height: 20vmin; 
     max-width: 20vmin;
@@ -86,9 +86,10 @@ JQuery Mobile Overrides
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center center;
-    background-attachment:fixed;  
+    background-attachment:fixed;
 }
 .ui-header .ui-title{
+	min-height: 50px;
 	font-size: 7vmin;
 	margin: 0;
 	text-overflow: unset;
@@ -97,6 +98,22 @@ input.ui-input-text{
 	font-size: 4vmin;
 }
 .ui-btn-text{
+	font-size: 3vmin;
+}
+#contents .ui-btn-text, #contents .ui-link-inherit{
+	height: 20vmin;
+}
+#contents .ui-li .ui-btn-inner a.ui-link-inherit{
+	padding-top: 0;
+	padding-bottom: 0;
+}
+#contents .ui-li-heading{
+	font-size: 3vmin;
+}
+#contents .ui-li-desc{
+	font-size: 2.5vmin;
+}
+.ui-footer .ui-btn-inner{
 	font-size: 3vmin;
 }
 
