@@ -1,4 +1,25 @@
-$(document).on('pageinit', function() {
+$(document).on('pageinit', "#splash", function() {
+	$("#logo").find("img").css("width", 0).css("height", 0);
+	$("#splashTitle").css('visibility','hidden');
+	$("#accreditation").css('visibility','hidden');
+	$("#accreditation2").css('visibility','hidden');
+	$("#accreditation h4:not(:last):not(:first)").css("margin", "0 5vmin 0 5vmin");
+	setTimeout(function(){			// show logo
+        $("#logo img").fadeIn(1000).css("width", (1003 / 1000 * 50) + "vmin").css("height", (1024 / 1000 * 50) + "vmin");
+    }, 500);
+	setTimeout(function(){			// fade in titile
+        $("#splashTitle").css('visibility','visible').hide().fadeIn("slow");
+    }, 2000);
+	setTimeout(function(){			// fade in Food2Fork credit
+        $("#accreditation").css('visibility','visible').hide().fadeIn("slow");
+    }, 2500);
+	setTimeout(function(){			// go to home page
+        $.mobile.changePage("#home", "fade");
+    }, 4000);
+	
+});
+
+$(document).on('pageinit', "#home", function() {
 	// 'enter' in textbox executes search
 	$('#ingredients').keypress(function(e){
 		if(e.keyCode==13)

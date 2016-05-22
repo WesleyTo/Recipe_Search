@@ -1,3 +1,29 @@
+/*=====================
+Overrides for Responsive Design
+=====================*/
+ul, p, h5{
+	font-size: 4vmin;
+}
+h1 {
+	font-size: 10vmin;
+}
+h2 {
+	font-size: 8vmin;
+}
+h3 {
+	font-size: 6vmin;
+}
+h4 {
+	font-size: 5vmin;
+}
+h5 {
+	font-size: 4vmin;
+}
+
+
+/*=====================
+	Misc Elements
+=====================*/
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -17,14 +43,41 @@
 	text-decoration: none;
 	font-weight: bold;
 }
+#logo {
+	z-index: 0;
+	margin: -8% 0 0 -5%;
+	height: 110%;
+	width: 110%;
+	text-align: center;
+	position: fixed;
+}
+#logo img{
+	z-index: 1;
+	margin-top: 40vh;
+	-webkit-transition: height 2s linear, width 2s linear;
+	-o-transition: height 2s linear, width 2s linear;
+	-moz-transition: height 2s linear, width 2s linear;
+	transition: height 2s linear, width 2s linear;
+}
+
 
 /*=====================
 JQuery Mobile Overrides
 =====================*/
+.ul-li > .ui-btn-inner {
+	height: 20vmin;
+}
+.ui-li-thumb{
+    max-height: 20vmin; 
+    max-width: 20vmin;
+}
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit{
+	padding-left: 25vmin;
+}
 .ui-li-thumb, .ui-li-icon {
     left: 1px;
-    height: 100%; 
-    width: 100%;
+    height: 20vmin; 
+    width: 20vmin;
     position: absolute;
     top: 0;
 }
@@ -34,4 +87,112 @@ JQuery Mobile Overrides
     background-size:cover;
     background-position:center center;
     background-attachment:fixed;  
+}
+.ui-header .ui-title{
+	font-size: 7vmin;
+	margin: 0;
+	text-overflow: unset;
+}
+input.ui-input-text{
+	font-size: 4vmin;
+}
+.ui-btn-text{
+	font-size: 3vmin;
+}
+
+/*============
+  ANIMATIONS
+============*/
+.spinner {
+	-webkit-animation: spin 4s infinite linear;
+	-moz-animation: spin 4s infinite linear;
+	-ms-animation: spin 4s infinite linear;
+	animation: spin 4s infinite linear;		
+}
+@-webkit-keyframes spin {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to { 
+		-webkit-transform: rotate(360deg);
+	}
+}
+@-ms-keyframes spin { 
+	from { 
+		-ms-transform: rotate(0deg); 
+	} to { 
+		-ms-transform: rotate(360deg); 
+	}
+}
+@-moz-keyframes spin { 
+	from { 
+		-moz-transform: rotate(0deg); 
+	} to { 
+		-moz-transform: rotate(360deg); 
+	}
+}
+@keyframes spin { 
+	from { 
+		transform: rotate(0deg); 
+	} to { 
+		transform: rotate(360deg); 
+	}
+}
+@-webkit-keyframes flipH {
+	from {
+		-webkit-transform: scaleX(1);
+	}
+	to { 
+		-webkit-transform: scaleX(-1);
+	}
+}
+@-ms-keyframes flipH { 
+	from { 
+		-ms-transform: scaleX(1); 
+	} to { 
+		-ms-transform: scaleX(-1); 
+	}
+}
+@-moz-keyframes flipH { 
+	from { 
+		-moz-transform: scaleX(1); 
+	} to { 
+		-moz-transform: scaleX(-1); 
+	}
+}
+@keyframes flipH { 
+	from { 
+		transform: scaleX(1); 
+	} to { 
+		transform: scaleX(-1); 
+	}
+}
+@-webkit-keyframes flipH-rev {
+	from {
+		-webkit-transform: scaleX(-1);
+	}
+	to { 
+		-webkit-transform: scaleX(1);
+	}
+}
+@-ms-keyframes flipH-rev { 
+	from { 
+		-ms-transform: scaleX(-1); 
+	} to { 
+		-ms-transform: scaleX(1); 
+	}
+}
+@-moz-keyframes flipH-rev { 
+	from { 
+		-moz-transform: scaleX(-1); 
+	} to { 
+		-moz-transform: scaleX(1); 
+	}
+}
+@keyframes flipH-rev { 
+	from { 
+		transform: scaleX(-1); 
+	} to { 
+		transform: scaleX(1); 
+	}
 }
