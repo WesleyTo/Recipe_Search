@@ -90,7 +90,7 @@ function makeRequest(page, query){
 		format: "json"
 		},
 		function(response, status){
-			if (status){ // PROCESS SUCCESSFUL REQUEST
+			if (status){ 							// PROCESS SUCCESSFUL REQUEST
 				var json = response.query.results;
 				$.each(json, function(i, element){	// PROCESS EACH RECIPE
 					if (element){					// MAKE SURE JSON DATA EXISTS
@@ -108,7 +108,8 @@ function makeRequest(page, query){
 							$("#load_more").show().button("enable");
 						}
 						else if(element.count <= 0){// NO RESULTS
-							$("#contents").append($("<li class='center'><h2>NO RESULTS FOUND</h2><h5>Try modifying your search terms</h5><li>"));
+							var noResultsDiv = $("<li class='background-50 center'><h2>NO RESULTS FOUND</h2><h5>Try modifying your search terms</h5><li>");
+							$("#contents").append(noResultsDiv);
 						}
 						if (element.count != 30) {	// LAST PAGE OF RESULTS
 							$("#indicators").slideUp();
@@ -116,7 +117,7 @@ function makeRequest(page, query){
 						}
 					}
 				});	
-				$("#search_btn").button("enable");
+				$("#search_btn").button("enable");	// RE-ENABLE SEARCH BUTTON
 				$("#busy").slideUp();
 			}
 		}
